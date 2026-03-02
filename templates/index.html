@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPL Pickleball Lineup Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎾 CPL Pickleball Lineup Builder</h1>
+        </header>
+
+        <nav class="tabs">
+            <button class="tab-button active" data-tab="lineup">Lineup</button>
+            <button class="tab-button" data-tab="info">Info & Stats</button>
+        </nav>
+
+        <!-- Lineup Tab -->
+        <div id="lineup" class="tab-content active">
+            <div class="controls">
+                <button id="validateBtn" class="btn btn-primary">✓ Validate Lineup</button>
+                <button id="exportPdfBtn" class="btn btn-success">📄 Export to PDF</button>
+                <button id="clearBtn" class="btn btn-secondary">🗑️ Clear All</button>
+            </div>
+
+            <div id="validationMessage" class="validation-message"></div>
+
+            <div id="roundsContainer" class="rounds-container">
+                <!-- Rounds will be generated here -->
+            </div>
+        </div>
+
+        <!-- Info & Stats Tab -->
+        <div id="info" class="tab-content">
+            <div class="info-header">
+                <h2>Player Statistics</h2>
+                <button id="refreshStatsBtn" class="btn btn-secondary">🔄 Refresh Stats</button>
+            </div>
+            <div id="statsContainer" class="stats-container">
+                <!-- Stats will be generated here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Pass player data from backend to frontend
+        const MEN = {{ men | tojson }};
+        const WOMEN = {{ women | tojson }};
+    </script>
+</body>
+</html>
